@@ -6,8 +6,10 @@ import string
 parser = argparse.ArgumentParser(
     description='A python CLI tool for generating random passwords ')
 
-parser.add_argument('-l', '--length', default=8, type=int,
+parser.add_argument('-l', '--length', type=int, default=8,
                     nargs='?', help='Length of the generated password (between 5-32)')
+parser.add_argument('-c', '--count', type=int, default=1, nargs='?',
+                   help='Number of passwords to be generated (default=1)')
 parser.add_argument('--no-digit', action='store_false',
                     dest='digits_allowed', help='Do not use digits in the password')
 parser.add_argument('--no-symbol', action='store_false',
@@ -68,5 +70,5 @@ def check_min_symbols(password: str) -> bool:
     return False
 
 
-for i in range(5):
+for i in range(args.count):
     print(generator(args.length))
