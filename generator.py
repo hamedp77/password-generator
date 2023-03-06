@@ -37,6 +37,10 @@ def generator(length: int) -> str:
     if INCLUDE_UPPERCASE:
         source_chars += string.ascii_uppercase
 
+    source_chars_list = list(source_chars)
+    random.shuffle(source_chars_list)
+    source_chars = ''.join(source_chars_list)
+    
     password = ''
     for _ in range(length):
         password += random.choice(source_chars)
