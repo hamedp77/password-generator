@@ -90,7 +90,7 @@ def main():
     """main function
 
     Argument parsing and calling the password generator function for the CLI happens here. 
-    This way, the whole script can be imported as a module.
+    This way, the whole script can be imported and used as a module.
     """
 
     parser = argparse.ArgumentParser(
