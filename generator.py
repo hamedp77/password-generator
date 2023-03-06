@@ -97,7 +97,7 @@ def main():
         description='A python CLI tool for generating random passwords ')
 
     parser.add_argument('-l', '--length', type=int, default=8,
-                        nargs='?', help='Length of the generated password (default=8)')
+                        nargs='?', help='Length of the generated password (>=4, default=8)')
     parser.add_argument('-c', '--count', type=int, default=1, nargs='?',
                         help='Number of passwords to be generated (default=1)')
     parser.add_argument('--no-digit', action='store_false',
