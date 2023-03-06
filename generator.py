@@ -25,10 +25,8 @@ INCLUDE_UPPERCASE = args.upper_allowed
 
 
 def generator(length: int) -> str:
-    """"Generate a random password of specified length and characters.
-
-
-    """
+    """Generate a random password of specified length and characters."""
+    
     source_chars = string.ascii_lowercase
     if INCLUDE_DIGITS:
         source_chars += string.digits
@@ -40,7 +38,7 @@ def generator(length: int) -> str:
     source_chars_list = list(source_chars)
     random.shuffle(source_chars_list)
     source_chars = ''.join(source_chars_list)
-    
+
     password = ''
     for _ in range(length):
         password += random.choice(source_chars)
@@ -54,14 +52,26 @@ def generator(length: int) -> str:
 
 
 def check_min_digit(password: str) -> bool:
+    """Check for minimum number of digits in the password.
+
+    returns True if there is at least 1 digit in the password otherwise returns False.
+    """
     return any(char in string.digits for char in password)
 
 
 def check_min_uppercase(password: str) -> bool:
+    """Check for minimum number of uppercase letters in the password.
+
+    returns True if there is at least 1 uppercase letter in the password otherwise returns False.
+    """
     return any(char.isupper() for char in password)
 
 
 def check_min_symbols(password: str) -> bool:
+    """Check for minimum number of puncuation symbols in the password.
+    
+    returns True if there is at least 1 puncuation symbol in the password otherwise returns False.
+    """
     return any(char in string.punctuation for char in password)
 
 
