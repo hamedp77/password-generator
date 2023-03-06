@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-l', '--length', type=int, default=8,
                     nargs='?', help='Length of the generated password (between 5-32, default=8)')
 parser.add_argument('-c', '--count', type=int, default=1, nargs='?',
-                   help='Number of passwords to be generated (default=1)')
+                    help='Number of passwords to be generated (default=1)')
 parser.add_argument('--no-digit', action='store_false',
                     dest='digits_allowed', help='Do not use digits in the password')
 parser.add_argument('--no-symbol', action='store_false',
@@ -38,36 +38,28 @@ def generator(length: int) -> str:
         source_chars += string.ascii_uppercase
 
     password = ''
+    print('---------------', length)
     for _ in range(length):
         password += random.choice(source_chars)
     if INCLUDE_DIGITS and not check_min_digit(password):
-        generator(length)
+        password = generator(length)
     if INCLUDE_SYMBOLS and not check_min_symbols(password):
-        generator(length)
+        password = generator(length)
     if INCLUDE_UPPERCASE and not check_min_uppercase(password):
-        generator(length)
+        password = generator(length)
     return password
 
 
 def check_min_digit(password: str) -> bool:
-    for c in string.digits:
-        if c in password:
-            return True
-    return False
+    return any(char in string.digits for char in password)
 
 
 def check_min_uppercase(password: str) -> bool:
-    for c in string.ascii_uppercase:
-        if c in password:
-            return True
-    return False
+    return any(char.isupper() for char in password)
 
 
 def check_min_symbols(password: str) -> bool:
-    for c in string.punctuation:
-        if c in password:
-            return True
-    return False
+    return any(char in string.punctuation for char in password)
 
 
 for _ in range(args.count):
