@@ -38,7 +38,6 @@ def generator(length: int) -> str:
         source_chars += string.ascii_uppercase
 
     password = ''
-    print('---------------', length)
     for _ in range(length):
         password += random.choice(source_chars)
     if INCLUDE_DIGITS and not check_min_digit(password):
