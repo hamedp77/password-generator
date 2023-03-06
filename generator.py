@@ -1,7 +1,7 @@
 """Password Generator
 
 This python script allows the user to generate random passwords of various lengths and characters.
-By defaultm it produces an 8-character long password including digits, uppercase and lowercase
+By default, it produces an 8-character long password including digits, uppercase and lowercase
 letters and punctuation symbols. You can use it as a CLI tool as well.
 To customize the length of the password or included characters check the help menu of the CLI.
 """
@@ -9,7 +9,6 @@ To customize the length of the password or included characters check the help me
 import argparse
 import random
 import string
-# from time import perf_counter
 
 parser = argparse.ArgumentParser(
     description='A python CLI tool for generating random passwords ')
@@ -62,7 +61,7 @@ def generator(length: int) -> str:
 def check_min_digit(password: str) -> bool:
     """Check for minimum number of digits in the password.
 
-    returns True if there is at least 1 digit in the password otherwise returns False.
+    returns True if there is at least 1 digit in the password, False otherwise.
     """
     return any(char in string.digits for char in password)
 
@@ -70,15 +69,15 @@ def check_min_digit(password: str) -> bool:
 def check_min_uppercase(password: str) -> bool:
     """Check for minimum number of uppercase letters in the password.
 
-    returns True if there is at least 1 uppercase letter in the password otherwise returns False.
+    returns True if there is at least 1 uppercase letter in the password, False otherwise.
     """
     return any(char.isupper() for char in password)
 
 
 def check_min_symbols(password: str) -> bool:
-    """Check for minimum number of punctuation symbols in the password.
+    """Check for minimum number of symbols in the password.
 
-    returns True if there is at least 1 punctuation symbol in the password otherwise returns False.
+    returns True if there is at least 1 symbol in the password, False otherwise.
     """
     return any(char in string.punctuation for char in password)
 
