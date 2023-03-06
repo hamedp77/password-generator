@@ -11,7 +11,7 @@ import random
 import string
 
 
-def generator(length: int, use_digits: bool = True,
+def generate_password(length: int = 8, use_digits: bool = True,
               use_symbols: bool = True, use_uppercase: bool = True) -> str:
     """Generate a random password of specified length and characters."""
 
@@ -31,11 +31,11 @@ def generator(length: int, use_digits: bool = True,
     for _ in range(length):
         password += random.choice(source_chars)
     if use_digits and not check_min_digit(password):
-        password = generator(length)
+        password = generate_password(length)
     if use_symbols and not check_min_symbols(password):
-        password = generator(length)
+        password = generate_password(length)
     if use_uppercase and not check_min_uppercase(password):
-        password = generator(length)
+        password = generate_password(length)
     return password
 
 
@@ -85,7 +85,7 @@ def main():
     args = parser.parse_args()
 
     for _ in range(args.count):
-        print(generator(args.length, args.digits_allowed,
+        print(generate_password(args.length, args.digits_allowed,
                         args.symbols_allowed, args.upper_allowed))
 
 
