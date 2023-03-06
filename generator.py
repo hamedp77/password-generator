@@ -41,6 +41,9 @@ def generate_password(length: int = 8, use_digits: bool = True,
         password = generate_password(length)
     if use_uppercase and not check_min_uppercase(password):
         password = generate_password(length)
+    if not check_min_lowercase(password):
+        password = generate_password(length)
+
     return password
 
 
@@ -49,6 +52,7 @@ def check_min_digit(password: str) -> bool:
 
     returns True if there is at least 1 digit in the password, False otherwise.
     """
+
     return any(char in string.digits for char in password)
 
 
@@ -57,7 +61,17 @@ def check_min_uppercase(password: str) -> bool:
 
     returns True if there is at least 1 uppercase letter in the password, False otherwise.
     """
+
     return any(char.isupper() for char in password)
+
+
+def check_min_lowercase(password: str) -> bool:
+    """Check for minimum number of lowercase letters in the password.
+
+    returns True if there is at least 1 lowercase letter in the password, False otherwise.
+    """
+
+    return any(char.islower() for char in password)
 
 
 def check_min_symbols(password: str) -> bool:
@@ -65,6 +79,7 @@ def check_min_symbols(password: str) -> bool:
 
     returns True if there is at least 1 symbol in the password, False otherwise.
     """
+
     return any(char in string.punctuation for char in password)
 
 
@@ -74,6 +89,7 @@ def main():
     Argument parsing and calling the password generator function for the CLI happens here. 
     This way, the whole script can be imported as a module.
     """
+
     parser = argparse.ArgumentParser(
         description='A python CLI tool for generating random passwords ')
 
