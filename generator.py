@@ -1,3 +1,11 @@
+"""Password Generator
+
+This python script allows the user to generate random passwords of various lengths and characters.
+By defaultm it produces an 8-character long password including digits, uppercase and lowercase
+letters and punctuation symbols. You can use it as a CLI tool as well.
+To customize the length of the password or included characters check the help menu of the CLI.
+"""
+
 import argparse
 import random
 import string
@@ -26,7 +34,7 @@ INCLUDE_UPPERCASE = args.upper_allowed
 
 def generator(length: int) -> str:
     """Generate a random password of specified length and characters."""
-    
+
     source_chars = string.ascii_lowercase
     if INCLUDE_DIGITS:
         source_chars += string.digits
@@ -68,9 +76,9 @@ def check_min_uppercase(password: str) -> bool:
 
 
 def check_min_symbols(password: str) -> bool:
-    """Check for minimum number of puncuation symbols in the password.
-    
-    returns True if there is at least 1 puncuation symbol in the password otherwise returns False.
+    """Check for minimum number of punctuation symbols in the password.
+
+    returns True if there is at least 1 punctuation symbol in the password otherwise returns False.
     """
     return any(char in string.punctuation for char in password)
 
