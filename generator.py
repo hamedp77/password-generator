@@ -20,6 +20,7 @@ def generate_password(length: int = 8, use_digits: bool = True,
     the generated password.
     """
 
+    # preparing the source characters based on user input
     source_chars = string.ascii_lowercase
     if use_digits:
         source_chars += string.digits
@@ -28,10 +29,12 @@ def generate_password(length: int = 8, use_digits: bool = True,
     if use_uppercase:
         source_chars += string.ascii_uppercase
 
+    # shuffling the base characters (for better randomness?)
     source_chars_list = list(source_chars)
     random.shuffle(source_chars_list)
     source_chars = ''.join(source_chars_list)
 
+    # generating the password and making sure conditions are met
     password = ''
     for _ in range(length):
         password += random.choice(source_chars)
