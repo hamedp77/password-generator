@@ -1,8 +1,8 @@
 """Password Generator
 
 This python script allows the user to generate random passwords of various lengths and characters.
-By default, it produces an 8-character long password including digits, uppercase and lowercase
-letters and punctuation symbols. You can use it as a CLI tool as well.
+By default, it produces an 8-character long password including digits, symbols,
+uppercase and lowercase letters. You can use it as a CLI tool as well.
 To customize the length of the password or included characters check the help menu of the CLI.
 """
 
@@ -12,8 +12,13 @@ import string
 
 
 def generate_password(length: int = 8, use_digits: bool = True,
-              use_symbols: bool = True, use_uppercase: bool = True) -> str:
-    """Generate a random password of specified length and characters."""
+                      use_symbols: bool = True, use_uppercase: bool = True) -> str:
+    """Generate a random password of specified length and characters.
+
+    By default, it returns an 8-character long password including digits, symbols,
+    uppercase and lowercase letters. Pass appropriate parameters to customize
+    the generated password.
+    """
 
     source_chars = string.ascii_lowercase
     if use_digits:
@@ -86,7 +91,7 @@ def main():
 
     for _ in range(args.count):
         print(generate_password(args.length, args.digits_allowed,
-                        args.symbols_allowed, args.upper_allowed))
+                                args.symbols_allowed, args.upper_allowed))
 
 
 if __name__ == '__main__':
