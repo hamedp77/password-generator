@@ -120,13 +120,17 @@ def main():
     args = parser.parse_args()
 
     for _ in range(args.count):
+        print('|', '-' * (args.length + 4), '|\n', sep='', end='')
+        print('|  ', end='')
         print(generate_password(args.length,
                                 args.digits_allowed,
                                 args.symbols_allowed,
                                 args.upper_allowed,
                                 args.lower_allowed
-                                )
+                                ), end=''
               )
+        print('  |')
+    print('|', '-' * (args.length + 4), '|', sep='', end='')
 
 
 if __name__ == '__main__':
