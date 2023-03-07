@@ -17,13 +17,13 @@ def generate_password(length: int = 8, use_digits: bool = True,
 
     By default, it returns an 8-character long password including digits, symbols,
     uppercase and lowercase letters. Pass appropriate parameters to customize
-    the generated password. BE CAREFULL with TOO SHORT passwords (less than 4) as they will
-    certainly throw exceptions. If you ommit all the possible characters the resulting password
-    will ONLY contain lowercase letters.
+    the generated password. Passwords with a length of less than 4 will throw exception.
+    If you ommit all the possible characters the resulting password will ONLY contain
+    lowercase letters.
     """
 
     # throw an exception for lengths less than 4
-    if length <= 4:
+    if length < 4:
         raise ValueError('length should not be less than 4.')
 
     # preparing the source characters based on user input
