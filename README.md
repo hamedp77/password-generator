@@ -22,5 +22,5 @@ You can clone the project in your app's directory and then import it in your cod
 
 After importing the module, you can call `generate_password()` from the module which returns a password in string format with the default attributes. Default behavior is a password with 8 random characters including **at least** 1 digit, 1 symbol, 1 lowercase letter and 1 uppercase letter. Pass appropriate arguments to the function in order to override the defaults.
 
-- **Warning**: Password length **should not be less than 4** as it will certainly cause exceptions to occure. A strong password is usually between 14-16 characters long.
+- **Warning**: Password length **should not be less than 4** and if so, it will raise a ValueError exception. A strong password is usually between 14-16 characters long.
 - **Note**: If you ommit all the possible characters, the resulting password will **only** contain lowercase letters.
