@@ -19,7 +19,7 @@ def generate_password(length: int = 8, use_digits: bool = True,
     uppercase and lowercase letters. Pass appropriate parameters to customize
     the generated password. BE CAREFULL with TOO SHORT passwords (less than 4) as they will
     certainly throw exceptions. If you ommit all the possible characters the resulting password
-    will ONLY contain lowercase lettres.
+    will ONLY contain lowercase letters.
     """
 
     # preparing the source characters based on user input
