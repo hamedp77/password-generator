@@ -46,13 +46,13 @@ def generate_password(length: int = 8, use_digits: bool = True,
     for _ in range(length):
         password += random.choice(source_chars)
     if use_digits and not check_min_digit(password):
-        password = generate_password(length)
+        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_symbols and not check_min_symbols(password):
-        password = generate_password(length)
+        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_uppercase and not check_min_uppercase(password):
-        password = generate_password(length)
+        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_lowercase and not check_min_lowercase(password):
-        password = generate_password(length)
+        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
 
     return password
 
