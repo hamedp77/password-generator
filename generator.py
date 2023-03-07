@@ -11,7 +11,8 @@ import string
 
 
 def generate_password(length: int = 8, use_digits: bool = True,
-                      use_symbols: bool = True, use_uppercase: bool = True) -> str:
+                      use_symbols: bool = True, use_uppercase: bool = True,
+                      use_lowercase: bool = True) -> str:
     """Generate a random password of specified length and characters.
 
     By default, it returns an 8-character long password including digits, symbols,
@@ -21,13 +22,18 @@ def generate_password(length: int = 8, use_digits: bool = True,
     """
 
     # preparing the source characters based on user input
-    source_chars = string.ascii_lowercase
+    source_chars = ''
     if use_digits:
         source_chars += string.digits
     if use_symbols:
         source_chars += string.punctuation
     if use_uppercase:
         source_chars += string.ascii_uppercase
+    if use_lowercase:
+        source_chars += string.ascii_lowercase
+    if not source_chars:
+        source_chars = string.ascii_lowercase
+        use_lowercase = True
 
     # shuffling the base characters (for better randomness?)
     source_chars_list = list(source_chars)
@@ -44,7 +50,7 @@ def generate_password(length: int = 8, use_digits: bool = True,
         password = generate_password(length)
     if use_uppercase and not check_min_uppercase(password):
         password = generate_password(length)
-    if not check_min_lowercase(password):
+    if use_lowercase and not check_min_lowercase(password):
         password = generate_password(length)
 
     return password
@@ -108,11 +114,18 @@ def main():
                         dest='symbols_allowed', help='Do not use symbols in the password')
     parser.add_argument('--no-upper', action='store_false', dest='upper_allowed',
                         help='Do not use uppercase letters in the password')
+    parser.add_argument('--no-lower', action='store_false', dest='lower_allowed',
+                       help='Do not user lowercase letters in the password')
     args = parser.parse_args()
 
     for _ in range(args.count):
-        print(generate_password(args.length, args.digits_allowed,
-                                args.symbols_allowed, args.upper_allowed))
+        print(generate_password(args.length,
+                                args.digits_allowed,
+                                args.symbols_allowed,
+                                args.upper_allowed,
+                                args.lower_allowed
+                                )
+              )
 
 
 if __name__ == '__main__':
