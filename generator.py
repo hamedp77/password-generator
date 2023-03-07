@@ -18,7 +18,8 @@ def generate_password(length: int = 8, use_digits: bool = True,
     By default, it returns an 8-character long password including digits, symbols,
     uppercase and lowercase letters. Pass appropriate parameters to customize
     the generated password. BE CAREFULL with TOO SHORT passwords (less than 4) as they will
-    certainly throw exceptions.
+    certainly throw exceptions. If you ommit all the possible characters the resulting password
+    will ONLY contain lowercase lettres.
     """
 
     # preparing the source characters based on user input
@@ -115,7 +116,7 @@ def main():
     parser.add_argument('--no-upper', action='store_false', dest='upper_allowed',
                         help='Do not use uppercase letters in the password')
     parser.add_argument('--no-lower', action='store_false', dest='lower_allowed',
-                       help='Do not user lowercase letters in the password')
+                        help='Do not user lowercase letters in the password')
     args = parser.parse_args()
 
     for _ in range(args.count):
