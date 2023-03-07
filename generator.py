@@ -6,7 +6,6 @@ uppercase and lowercase letters. You can use it as a CLI tool as well.
 To customize the length of the password or included characters check the help menu of the CLI.
 """
 
-import argparse
 import random
 import string
 
@@ -93,6 +92,8 @@ def main():
     Argument parsing and calling the password generator function for the CLI happens here. 
     This way, the whole script can be imported and used as a module.
     """
+
+    import argparse
 
     parser = argparse.ArgumentParser(
         description='A python CLI tool for generating random passwords ')
