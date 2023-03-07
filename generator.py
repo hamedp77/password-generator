@@ -22,6 +22,10 @@ def generate_password(length: int = 8, use_digits: bool = True,
     will ONLY contain lowercase letters.
     """
 
+    # throw an exception for lengths less than 4
+    if length <= 4:
+        raise ValueError('length should not be less than 4.')
+
     # preparing the source characters based on user input
     source_chars = ''
     if use_digits:
@@ -32,6 +36,8 @@ def generate_password(length: int = 8, use_digits: bool = True,
         source_chars += string.ascii_uppercase
     if use_lowercase:
         source_chars += string.ascii_lowercase
+
+    # making sure source_chars is populated with lowercase letters if all the flags are set to False
     if not source_chars:
         source_chars = string.ascii_lowercase
         use_lowercase = True
@@ -120,7 +126,7 @@ def main():
     args = parser.parse_args()
 
     for _ in range(args.count):
-        print('|', '-' * (args.length + 4), '|\n', sep='', end='')
+        print('|', '-' * (args.length + 4), '|', sep='')
         print('|  ', end='')
         print(generate_password(args.length,
                                 args.digits_allowed,
