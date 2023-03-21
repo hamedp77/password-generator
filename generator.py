@@ -52,13 +52,17 @@ def generate_password(length: int = 8, use_digits: bool = True,
     for _ in range(length):
         password += random.choice(source_chars)
     if use_digits and not check_min_digit(password):
-        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        password = generate_password(
+            length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_symbols and not check_min_symbols(password):
-        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        password = generate_password(
+            length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_uppercase and not check_min_uppercase(password):
-        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        password = generate_password(
+            length, use_digits, use_symbols, use_uppercase, use_lowercase)
     if use_lowercase and not check_min_lowercase(password):
-        password = generate_password(length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        password = generate_password(
+            length, use_digits, use_symbols, use_uppercase, use_lowercase)
 
     return password
 
@@ -124,6 +128,10 @@ def main():
     parser.add_argument('--no-lower', action='store_false', dest='lower_allowed',
                         help='Do not user lowercase letters in the password')
     args = parser.parse_args()
+
+    if args.count < 1:
+        print('Count must be more than 0')
+        exit()
 
     for _ in range(args.count):
         print('|', '-' * (args.length + 4), '|', sep='')
