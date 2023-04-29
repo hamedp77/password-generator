@@ -27,40 +27,38 @@ def generate_password(length: int = 8, use_digits: bool = True,
         raise ValueError('length should not be less than 4.')
 
     # preparing the source characters based on user input
-    source_chars = ''
+    source_chars = []
     if use_digits:
-        source_chars += string.digits
+        source_chars.extend(string.digits)
     if use_symbols:
-        source_chars += string.punctuation
+        source_chars.extend(string.punctuation)
     if use_uppercase:
-        source_chars += string.ascii_uppercase
+        source_chars.extend(string.ascii_uppercase)
     if use_lowercase:
-        source_chars += string.ascii_lowercase
+        source_chars.extend(string.ascii_lowercase)
 
     # making sure source_chars is populated with lowercase letters if all the flags are set to False
     if not source_chars:
-        source_chars = string.ascii_lowercase
+        source_chars.extend(string.ascii_lowercase)
         use_lowercase = True
 
     # shuffling the base characters (for better randomness?)
-    source_chars_list = list(source_chars)
-    random.shuffle(source_chars_list)
-    source_chars = ''.join(source_chars_list)
+    random.shuffle(source_chars)
 
     # generating the password and making sure conditions are met
     password = ''.join(random.choices(source_chars, k=length))
     if use_digits and not check_min_digit(password):
-        password = generate_password(
-            length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        generate_password(length, use_digits, use_symbols,
+                          use_uppercase, use_lowercase)
     if use_symbols and not check_min_symbols(password):
-        password = generate_password(
-            length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        generate_password(length, use_digits, use_symbols,
+                          use_uppercase, use_lowercase)
     if use_uppercase and not check_min_uppercase(password):
-        password = generate_password(
-            length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        generate_password(length, use_digits, use_symbols,
+                          use_uppercase, use_lowercase)
     if use_lowercase and not check_min_lowercase(password):
-        password = generate_password(
-            length, use_digits, use_symbols, use_uppercase, use_lowercase)
+        generate_password(length, use_digits, use_symbols,
+                          use_uppercase, use_lowercase)
 
     return password
 
