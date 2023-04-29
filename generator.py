@@ -48,9 +48,7 @@ def generate_password(length: int = 8, use_digits: bool = True,
     source_chars = ''.join(source_chars_list)
 
     # generating the password and making sure conditions are met
-    password = ''
-    for _ in range(length):
-        password += random.choice(source_chars)
+    password = ''.join(random.choices(source_chars, k=length))
     if use_digits and not check_min_digit(password):
         password = generate_password(
             length, use_digits, use_symbols, use_uppercase, use_lowercase)
