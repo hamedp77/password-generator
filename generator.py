@@ -9,6 +9,8 @@ To customize the length of the password or included characters check the help me
 import random
 import string
 
+MIN_PWD_LENGTH = 6
+
 
 def generate_password(length: int = 8, use_digits: bool = True,
                       use_symbols: bool = True, use_uppercase: bool = True,
@@ -17,14 +19,14 @@ def generate_password(length: int = 8, use_digits: bool = True,
 
     By default, it returns an 8-character long password including digits, symbols,
     uppercase and lowercase letters. Pass appropriate parameters to customize
-    the generated password. Passwords with a length of less than 4 will throw exception.
+    the generated password. Passwords with a length of less than 6 will throw exception.
     If you ommit all the possible characters the resulting password will ONLY contain
     lowercase letters.
     """
 
-    # throw an exception for lengths less than 4
-    if length < 4:
-        raise ValueError('length should not be less than 4.')
+    # throw an exception for lengths less than MIN_PWD_LENGTH
+    if length < MIN_PWD_LENGTH:
+        raise ValueError(f'length should not be less than {MIN_PWD_LENGTH}.')
 
     # preparing the source characters based on user input
     source_chars = []
@@ -112,7 +114,7 @@ def main():
         description='A python CLI tool for generating random passwords ')
 
     parser.add_argument('-l', '--length', type=int, default=8,
-                        nargs='?', help='Length of the generated password (>=4, default=8)')
+                        nargs='?', help=f'Length of the generated password (>={MIN_PWD_LENGTH}, default=8)')
     parser.add_argument('-c', '--count', type=int, default=1, nargs='?',
                         help='Number of passwords to be generated (default=1)')
     parser.add_argument('--no-digit', action='store_false',
